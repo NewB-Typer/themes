@@ -1,0 +1,15 @@
+# Background image and scaling
+image="/$HOME/Downloads/tobi.jpg"
+scaling=fill
+
+# Effects
+#effect-blur=7x5
+#effect-vignette=0.5:0.5
+
+# Colors
+inside-color=000000
+ring-color=cba6f7
+line-color=ffffff
+key-hl-color=947F19
+bs-hl-color=f38ba8
+text-color=ffffff

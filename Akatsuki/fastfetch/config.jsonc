@@ -1,0 +1,165 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+
+  "logo": {
+    "type": "file",
+    "source": "~/.config/fastfetch/logo.txt",
+  },
+
+  "display": {
+    "separator": "  "
+  },
+
+  "modules": [
+    // Title
+    {
+      "type": "title",
+      "titleColor": "bold_red",
+      "format": "╭───────────── {user-name-colored} ──────────────────── "
+    },
+
+    // System Information
+    {
+      "type": "custom",
+      "format": "{#bold_red}│ SYSTEM INFORMATION:"
+    },
+    {
+      "type": "os",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰍹 OS"
+    },
+    {
+      "type": "kernel",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰒋 Kernel"
+    },
+    {
+      "type": "uptime",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰅐 Uptime"
+    },
+    {
+      "type": "packages",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰏖 Packages",
+      "format": "{all}"
+    },
+    {
+      "type": "custom",
+      "format": "{#1}│"
+    },
+
+    // Desktop Environment
+    {
+      "type": "custom",
+      "format": "{#bold_red}│ DE INFORMATION:"
+    },
+    {
+      "type": "de",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰧨 DE"
+    },
+    {
+      "type": "wm",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󱂬 WM"
+    },
+    {
+      "type": "wmtheme",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰉼 WM Theme"
+    },
+    {
+      "type": "shell",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰞷 Shell"
+    },
+
+    {
+      "type": "custom",
+      "format": "{#1}│"
+    },
+
+    // Appearance
+    {
+      "type": "custom",
+      "format": "{#bold_red}│ APPEARANCE:"
+    },
+    {
+      "type": "theme",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰉫 Theme"
+    },
+    {
+      "type": "icons",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰣇 Icons"
+    },
+    {
+      "type": "font",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰻧 Font"
+    },
+
+    {
+      "type": "custom",
+      "format": "{#1}│"
+    },
+
+    // Hardware Information
+    {
+      "type": "custom",
+      "format": "{#bold_red}│ HARDWARE INFORMATION:"
+    },
+    {
+      "type": "cpu",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰻠 CPU"
+    },
+    {
+      "type": "gpu",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰢮 GPU"
+    },
+    {
+      "type": "memory",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰍛 Memory"
+    },
+    {
+      "type": "swap",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰍛 Swap"
+    },
+    {
+      "type": "disk",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰋊 Disk (/)",
+      "folders": "/"
+    },
+    {
+      "type": "battery",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│  󰁹 Battery"
+    },
+
+    {
+      "type": "custom",
+      "format": "{#1}│"
+    },
+
+    // Colors
+    {
+      "type": "colors",
+      "keyColor": "light_cyan",
+      "key": "{#separator}│",
+      "symbol": "circle"
+    },
+
+    // Footer
+    {
+      "type": "custom",
+      "format": "{#bold_red}╰───────────────────────────────────────────────────────────────────────╯"
+    }
+  ]
+}

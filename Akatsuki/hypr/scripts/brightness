@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Path to the brightness icon
+ICON_PATH="$HOME/.config/dunst/icons/brightness.png"
+
+# Amount to change brightness (can be adjusted)
+BRIGHTNESS_STEP="5%"
+
+# Adjust brightness using brightnessctl
+case "$1" in
+  increase)
+    brightnessctl set +$BRIGHTNESS_STEP
+    BRIGHTNESS_CHANGE="Increased"
+    ;;
+  decrease)
+    brightnessctl set $BRIGHTNESS_STEP-
+    BRIGHTNESS_CHANGE="Decreased"
+    ;;
+  *)
+    echo "Usage: $0 {increase|decrease}"
+    exit 1
+    ;;
+esac
+
+# Get the current brightness level (as a percentage)
+CURRENT_BRIGHTNESS=$(brightnessctl | grep -oP '\(\K[0-9]+(?=%\))')
+
+# Send notification with dunstify
+dunstify -i "$ICON_PATH" -r 2593 "Brightness $BRIGHTNESS_CHANGE" "$CURRENT_BRIGHTNESS%" -t 2000

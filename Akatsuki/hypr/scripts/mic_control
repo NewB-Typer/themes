@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# mic_control.sh
+# Toggle microphone mute state and show notification with dunst
+
+# Toggle mic mute state
+pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Get current mute status
+if pactl get-source-mute @DEFAULT_SOURCE@ | grep -q "yes"; then
+    # Muted
+    ICON="$HOME/.config/dunst/icons/mic_mute.png"
+    MESSAGE="Microphone muted"
+else
+    # Unmuted
+    ICON="$HOME/.config/dunst/icons/mic_unmute.png"
+    MESSAGE="Microphone unmuted"
+fi
+
+# Send notification
+dunstify -i "$ICON" "$MESSAGE" -r 2593 -t 1500

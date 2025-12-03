@@ -1,0 +1,36 @@
+#!/bin/bash
+
+if ! wpctl get-volume @DEFAULT_SINK@ &>/dev/null; then
+    wpctl set-default alsa_output.pci-0000_00_1f.3.pro-output-0
+fi
+
+
+case "$1" in
+    mute)
+        wpctl set-mute @DEFAULT_SINK@ toggle
+        ;;
+    up)
+        wpctl set-volume @DEFAULT_SINK@ 5%+
+        ;;
+    down)
+        wpctl set-volume @DEFAULT_SINK@ 5%-
+        ;;
+    *)
+        echo "Usage: $0 {mute|up|down}"
+        exit 1
+        ;;
+esac
+
+# Wait a moment for wpctl to apply the change
+sleep 0.1
+
+# Get current volume and mute status
+volume=$(wpctl get-volume @DEFAULT_SINK@ | awk '{printf "%.0f\n", $2 * 100}')
+mute=$(wpctl get-volume @DEFAULT_SINK@ | awk '{print $3}')
+
+# Send notification
+if [[ "$mute" == "[MUTED]" ]]; then
+    dunstify -a "Volume" -i "$HOME/.config/dunst/icons/mute.png" -u low -r 2593 "Volume muted" -t 2000
+else
+    dunstify -a "Volume" -i "$HOME/.config/dunst/icons/medium_volume.png" -u low -r 2593 "Volume: $volume%" -t 2000
+fi

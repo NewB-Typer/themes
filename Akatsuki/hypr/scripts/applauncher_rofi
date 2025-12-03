@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+rofi -show run -config /$HOME/.config/rice/rofi/app_launcher.rasi
