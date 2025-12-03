@@ -1,0 +1,229 @@
+* {
+    font-family: "Font Awesome 6 Free", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+window#waybar {
+padding: 0;
+margin: 0;
+border-bottom: 1px solid #A3180B;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+#workspaces {
+    margin: 0px;
+    padding: 0px;
+}
+ #workspaces button {
+    padding: 0 2px ;
+}
+/*
+#workspaces button.focused {
+    background-color: #444444;
+    border-top: 1px solid white;
+    color: #ffffff;
+}
+
+#workspaces button.urgent {
+    background-color: #ff5555;
+    color: white;
+}
+
+#workspaces button:hover {
+    background-color: white;   
+}
+*/
+
+.modules-center{
+background-color: #800930;
+border: 1px solid;
+}
+
+.modules-right{
+
+border-top: 1px solid #A3180B;
+border-bottom: 1px solid #A3180B;
+}
+ 
+ .modules-left{
+
+border-top: 1px solid #A3180B;
+border-bottom: 1px solid #A3180B;
+}
+ 
+ 
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon,
+#mpd {
+    padding: 0 10px;
+    color: #ffffff;
+}
+
+#custom-power{
+padding: 0 4px;
+margin: 0; 
+}
+
+ #clock {
+}
+#
+#custom-vpn{
+   border-top: 1px solid white ;
+    border-radius: 4px;
+}
+
+#systemd-failed-units{
+  border-top: 1px solid white ;
+    border-radius: 4px;
+}
+
+ 
+#battery {
+}
+
+#battery.charging, #battery.plugged {
+    background-color: #0B2547;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: white;
+}
+
+#privacy-item.screenshare {
+    background-color: #cf5700;
+}
+
+#privacy-item.audio-in {
+    background-color: #1ca000;
+}
+
+#privacy-item.audio-out {
+    background-color: green;
+}
+
+#taskbar {
+}
+
+#taskbar.button {
+  background-color: transparent;
+}
+#taskbar.button:hover {
+  background-color: green;
+}
+
+#taskbar.button.focused {
+}
+
+
+
+label:focus {
+    background-color: #000000;
+}
+#user,#cpu,#memory.#disk{
+}
+#custom-weather{
+}
+
+#backlight {
+    }
+
+#network {
+}
+
+#network.disconnected {
+    background-color: #f53c3c;
+}
+#wlr-taskbar{
+    }
+#temperature {
+    }
+
+#temperature.critical {
+    background-color: #eb4d4b;
+}
+
+#pulseaudio {
+    }
+
+#pulseaudio.muted {
+    background-color: #90b1b1;
+    color: #2a5c45;
+}
+
+#wireplumber {
+    background-color: #fff0f5;
+    color: #000000;
+}
+
+#wireplumber.muted {
+    background-color: #f53c3c;
+}
+/*
+#custom-media {
+    background-color: #66cc99;
+    color: #2a5c45;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+#tray {
+    background-color: #2980b9;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb4d4b;
+}
+
+*/
