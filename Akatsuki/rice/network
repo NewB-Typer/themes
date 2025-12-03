@@ -1,0 +1,5 @@
+#!/bin/bash
+
+DIR="$(dirname "$(realpath "$0")")"
+
+networkmanager_dmenu -theme "$DIR/networkmenu.rasi"

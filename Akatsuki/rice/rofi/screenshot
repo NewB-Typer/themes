@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+
+# ── Config ────────────────────────────────────────────────────────────────
+RASI="$HOME/.config/rice/rofi/screenshot.rasi"
+
+PROMPT='Screenshot'
+MESG="Directory :: $HOME/Pictures/Screenshots"
+
+BORDER_COLOR="#FFFFFF"
+SCREENSHOT_DIR="$HOME/Pictures/Screenshots"
+mkdir -p "$SCREENSHOT_DIR"
+
+NOTIFY_ICON="$HOME/.config/dunst/icons/camera.png"
+#SOUND_FILE="/usr/share/sounds/freedesktop/stereo/screen-capture.oga"
+
+# ── Rofi Options ──────────────────────────────────────────────────────────
+
+option_1=" Capture Desktop"   
+option_2=" Capture Area"      
+option_3=" Capture Window"    
+option_4=" Capture in 5s"     
+option_5=" Capture in 10s"
+
+ 
+rofi_cmd() {
+    rofi -dmenu -p "$PROMPT" -mesg "$MESG" -markup-rows -theme "$RASI"
+}
+
+run_rofi() {
+    echo -e "$option_1\n$option_2\n$option_3\n$option_4\n$option_5" | rofi_cmd
+}
+
+# ── Helper Functions ───────────────────────────────────────────────────────
+notify_view() {
+    local file_path="$1"
+    notify_cmd="dunstify -u low -h string:x-dunst-stack-tag:obscreenshot -i $NOTIFY_ICON"
+    $notify_cmd "Copied to clipboard."
+  ##  [[ -n "$SOUND_FILE" ]] && paplay "$SOUND_FILE" &>/dev/null &
+    shotwell "$file_path" &
+    if [[ -e "$file_path" ]]; then
+        $notify_cmd "Screenshot Saved."
+    else
+        $notify_cmd "Screenshot Deleted."
+    fi
+}
+
+copy_shot() {
+    tee "$1" | wl-copy --type image/png
+}
+
+countdown() {
+    for sec in $(seq "$1" -1 1); do
+        dunstify -t 1000 -h string:x-dunst-stack-tag:screenshottimer \
+            -i $HOME/.config/dunst/icons/timer.png "Taking shot in: $sec"
+        sleep 1
+    done
+}
+
+# ── Capture Functions ──────────────────────────────────────────────────────
+shotnow() {
+    local time=$(date +%Y-%m-%d-%H-%M-%S)
+    local geometry=$(hyprctl activewindow -j | jq -r '"\(.size[0])x\(.size[1])"')
+    local file="$SCREENSHOT_DIR/Screenshot_${time}_${geometry}.png"
+    grim - | copy_shot "$file"
+    notify_view "$file"
+}
+
+shot5() {
+    countdown 5
+    shotnow
+}
+
+shot10() {
+    countdown 10
+    shotnow
+}
+
+shotwin() {
+    local time=$(date +%Y-%m-%d-%H-%M-%S)
+    local coords
+    coords=($(hyprctl activewindow -j | jq -r '.at[0], .at[1], .size[0], .size[1]'))
+    local x=${coords[0]} y=${coords[1]} w=${coords[2]} h=${coords[3]}
+    local file="$SCREENSHOT_DIR/Screenshot_${time}_${w}x${h}.png"
+    grim -g "${w}x${h}+${x}+${y}" - | copy_shot "$file"
+    notify_view "$file"
+}
+
+shotarea() {
+    local time=$(date +%Y-%m-%d-%H-%M-%S)
+    local file="$SCREENSHOT_DIR/Screenshot_${time}_area.png"
+    grim -g "$(slurp -b "${BORDER_COLOR}44" -c "$BORDER_COLOR" -w 2)" - | copy_shot "$file"
+    notify_view "$file"
+}
+
+# ── Execute Selection ──────────────────────────────────────────────────────
+chosen="$(run_rofi)"
+case "$chosen" in
+    $option_1) shotnow ;;
+    $option_2) shotarea ;;
+    $option_3) shotwin ;;
+    $option_4) shot5 ;;
+    $option_5) shot10 ;;
+esac
