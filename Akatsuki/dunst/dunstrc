@@ -1,0 +1,94 @@
+[global]
+# --- Basic Look & Feel (main rice knobs) ---
+font = JetBrainsNerdMonoNL 10
+background = "#1E1C1F"
+foreground = "#ffffff"
+frame_color = "#000000"
+frame_width = 2
+corner_radius = 2
+separator_color = frame
+
+# --- Display ---
+monitor = 0
+follow = mouse
+notification_limit = 10
+
+# --- Geometry ---
+width = 300
+height = (0, 80)        # max height per notification (smaller)
+origin = top-right
+offset = (0, 5)        # push a little lower
+scale = 4
+
+# --- Icons ---
+icon_position = left
+min_icon_size = 24
+max_icon_size = 64
+icon_path = ~/.config/dunst/icons
+
+# --- Appearance ---
+padding = 6
+horizontal_padding = 6
+text_icon_padding = 4
+separator_height = 2
+gap_size = 4
+alignment = left
+vertical_alignment = center
+
+# --- Progress bar ---
+progress_bar = true
+progress_bar_height = 8   # slim bar
+progress_bar_min_width = 150
+progress_bar_max_width = 300
+progress_bar_frame_width = 0
+progress_bar_corner_radius = 4
+icon_corner_radius = 4
+
+# --- Text ---
+markup = full
+format = "<b>%s</b>\n%b"
+show_age_threshold = 60
+ellipsize = middle
+ignore_newline = no
+stack_duplicates = true
+hide_duplicate_count = false
+show_indicators = yes
+
+# --- History ---
+sticky_history = yes
+history_length = 20
+
+# --- Misc ---
+dmenu = /usr/bin/dmenu -p dunst:
+browser = /usr/bin/xdg-open
+always_run_script = true
+title = Dunst
+class = Dunst
+ignore_dbusclose = false
+
+# --- Wayland ---
+layer = top
+force_xwayland = false
+
+# --- Mouse bindings ---
+mouse_left_click = close_current
+mouse_middle_click = do_action, close_current
+mouse_right_click = close_all
+
+[urgency_low]
+background = "#1E1C1F"
+foreground = "#ffffff"
+frame_color = "#ffffff"
+timeout = 4
+
+[urgency_normal]
+background = "##1E1C1F"
+foreground = "#ffffff"
+frame_color = "#ffffff"
+timeout = 6
+
+[urgency_critical]
+background = "#f38ba8"
+foreground = "#1e1e2e"
+frame_color = "#f38ba8"
+timeout = 0
